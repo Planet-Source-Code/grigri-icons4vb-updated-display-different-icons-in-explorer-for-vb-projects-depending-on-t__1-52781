@@ -1,0 +1,10 @@
+REGEDIT4
+
+[HKEY_CLASSES_ROOT\VisualBasic.ProjectGroup\shellex\IconHandler]
+@ = "{0236E950-4D61-420C-9B4A-5BFAB9D73A43}"
+
+[HKEY_CLASSES_ROOT\VisualBasic.Project\shellex\IconHandler]
+@ = "{0236E950-4D61-420C-9B4A-5BFAB9D73A43}"
+
+[HKEY_CLASSES_ROOT\VisualBasic.Form\shellex\IconHandler]
+@ = "{0236E950-4D61-420C-9B4A-5BFAB9D73A43}"

@@ -1,0 +1,11 @@
+101 ICON "Project Group.ico"
+102 ICON "Project_Old.ico"
+103 ICON "Project_Exe.ico"
+104 ICON "Project_Dll.ico"
+105 ICON "Project_OleExe.ico"
+106 ICON "Project_Control.ico"
+107 ICON "Form_Normal.ico"
+108 ICON "Form_MDI_Child.ico"
+109 ICON "Form_MDI_Client.ico"
+
+

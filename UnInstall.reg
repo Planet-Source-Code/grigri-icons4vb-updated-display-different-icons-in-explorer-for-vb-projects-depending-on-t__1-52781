@@ -1,0 +1,7 @@
+REGEDIT4
+
+[-HKEY_CLASSES_ROOT\VisualBasic.ProjectGroup\shellex\IconHandler]
+
+[-HKEY_CLASSES_ROOT\VisualBasic.Project\shellex\IconHandler]
+
+[-HKEY_CLASSES_ROOT\VisualBasic.Form\shellex\IconHandler]
