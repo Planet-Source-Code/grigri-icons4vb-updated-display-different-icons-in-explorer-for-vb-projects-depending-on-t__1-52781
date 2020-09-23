@@ -1,0 +1,119 @@
+[
+    uuid(6AD60BC3-ADCC-4742-8E66-A6688981E106),
+    helpstring("Icons4VB Helper TypeLib - by grigri"),
+    version(1.00)
+]
+library Icons4VBHelper {
+
+    importlib("stdole2.tlb");
+
+    interface IPersistFile;
+    interface IExtractIconA;
+    interface IExtractIconW;
+
+    typedef LONG BOOL;
+    typedef unsigned char BYTE;
+
+    typedef struct UUID {
+        LONG Data1;
+        short Data2;
+        short Data3;
+        BYTE Data4[8];
+    } UUID;
+
+    typedef enum GIL_INFLAGS {
+        [helpstring("Specifies an open icon")]
+        GIL_OPENICON     = 0x0001, 
+        [helpstring("Icon is to be displayed in a ShellFolder")]
+        GIL_FORSHELL     = 0x0002, 
+        [helpstring("Asynchronous retrieval, return E_ASYNC")]
+        GIL_ASYNC        = 0x0020, 
+    } GIL_INFLAGS;
+
+    typedef enum GIL_OUTFLAGS {
+        [helpstring("simulate this document icon for this")]
+        GIL_SIMULATEDOC  = 0x0001, 
+        [helpstring("icons from this class are per instance (each file has its own)")]
+        GIL_PERINSTANCE  = 0x0002, 
+        [helpstring("icons from this class per class (shared for all files of this type)")]
+        GIL_PERCLASS     = 0x0004, 
+        [helpstring("location is not a filename, must call ::ExtractIcon")]
+        GIL_NOTFILENAME  = 0x0008,
+        [helpstring("this icon should not be cached")]
+        GIL_DONTCACHE    = 0x0010, 
+    } GIL_OUTFLAGS;
+
+    [
+        odl,
+        uuid(000214EB-0000-0000-C000-000000000046),
+        helpstring("IExtractIcon ANSI version")
+    ]
+    interface IExtractIconA : IUnknown {
+
+        HRESULT GetIconLocation(
+            [in] GIL_INFLAGS uFlags,
+            [in] LONG szIconFile,
+            [in] LONG cchMax,
+            [in, out] int * piIndex,
+            [out, retval] GIL_OUTFLAGS * pwFlags);
+
+        HRESULT Extract(
+            [in] LONG pszFile,
+            [in] LONG nIconIndex,
+            [in, out] LONG *phiconLarge,
+            [in, out] LONG *phiconSmall,
+            [in] LONG nIconSize);
+    };
+
+    [
+        odl,
+        uuid(000214FA-0000-0000-C000-000000000046),
+        helpstring("IExtractIcon Unicode version")
+    ]
+    interface IExtractIconW : IUnknown {
+
+        HRESULT GetIconLocation(
+            [in] GIL_INFLAGS uFlags,
+            [in] LONG pwszIconFile,
+            [in] LONG cchMax,
+            [in, out] int * piIndex,
+            [out, retval] GIL_OUTFLAGS * pwFlags);
+
+        HRESULT Extract(
+            [in] LONG pwszFile,
+            [in] LONG nIconIndex,
+            [in, out] LONG *phiconLarge,
+            [in, out] LONG *phiconSmall,
+            [in] LONG nIconSize);
+    };
+
+    [
+        odl,
+        uuid(0000010c-0000-0000-C000-000000000046),
+	restricted
+    ]
+    interface IPersist : IUnknown {
+
+        [restricted]
+        HRESULT GetClassID(
+            [in, out] UUID *pClassID);
+    }
+
+    [
+        odl,
+        uuid(0000010B-0000-0000-C000-000000000046),
+        helpstring("IPersistFile interface")
+    ]
+    interface IPersistFile : IPersist {
+        HRESULT IsDirty();
+        HRESULT Load(
+                    [in] long pszFileName, 
+                    [in] long dwMode);
+        HRESULT Save(
+                    [in] long pszFileName, 
+                    [in] long fRemember);
+        HRESULT SaveCompleted([in] long pszFileName);
+        HRESULT GetCurFile([out, retval] long* ppszFileName);
+    };
+    
+};
